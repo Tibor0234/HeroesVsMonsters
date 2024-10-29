@@ -1,0 +1,17 @@
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.deps.json
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.runtimeconfig.json
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.pdb
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Model.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\bin\Debug\net8.0\C2K2DP_HSZF_2024251.Model.pdb
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj.AssemblyReference.cache
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.AssemblyInfoInputs.cache
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.AssemblyInfo.cs
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj.CoreCompileInputs.cache
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_H.DF3383BE.Up2Date
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\refint\C2K2DP_HSZF_2024251.Persistence.MsSql.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.pdb
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Persistence.MsSql.genruntimeconfig.cache
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\obj\Debug\net8.0\ref\C2K2DP_HSZF_2024251.Persistence.MsSql.dll
