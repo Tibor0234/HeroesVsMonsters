@@ -61,9 +61,8 @@ namespace C2K2DP_HSZF_2024251
 
             BattleService battleService = new BattleService(dbctx);
             BattleSimulation battleSimulation = new BattleSimulation(dbctx, battleService);
-            AppendEntity appendEntity = new AppendEntity();
-            ModifyEntity modifyEntity = new ModifyEntity();
-            MainMenu mainMenu = new(dbctx, battleSimulation, appendEntity, modifyEntity);
+            AppendOrModifyEntity appendOrModifyEntity = new AppendOrModifyEntity(dbctx);
+            MainMenu mainMenu = new(dbctx, battleSimulation, appendOrModifyEntity);
 
             mainMenu.Menu();
         }

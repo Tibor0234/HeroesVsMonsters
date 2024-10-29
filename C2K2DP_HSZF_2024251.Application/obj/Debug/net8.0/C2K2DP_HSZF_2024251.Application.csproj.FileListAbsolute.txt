@@ -15,3 +15,4 @@ C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Application\
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Application\obj\Debug\net8.0\refint\C2K2DP_HSZF_2024251.Application.dll
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Application\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Application.pdb
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Application\obj\Debug\net8.0\ref\C2K2DP_HSZF_2024251.Application.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Application\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Application.sourcelink.json

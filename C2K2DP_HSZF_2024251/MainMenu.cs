@@ -15,19 +15,17 @@ namespace C2K2DP_HSZF_2024251
     {
         HeroesVsMonstersDbContext ctx;
         BattleSimulation battleSimulation;
-        AppendEntity appendEntity;
-        ModifyEntity modifyEntity;
-        public MainMenu(HeroesVsMonstersDbContext ctx, BattleSimulation battleSimulation, AppendEntity appendEntity, ModifyEntity modifyEntity)
+        AppendOrModifyEntity appendOrModifyEntity;
+        public MainMenu(HeroesVsMonstersDbContext ctx, BattleSimulation battleSimulation, AppendOrModifyEntity appendOrModifyEntity)
         {
             this.ctx = ctx;
             this.battleSimulation = battleSimulation;
-            this.appendEntity = appendEntity;
-            this.modifyEntity = modifyEntity;
+            this.appendOrModifyEntity = appendOrModifyEntity;
         }
         public void Menu()
         {
             Console.Clear();
-            ListEntities();
+            ListEntities.ListAll(ctx);
 
             Console.Write("\nSimulate battle: [Q]");
             Console.SetCursorPosition(40, Console.GetCursorPosition().Top);
@@ -42,49 +40,13 @@ namespace C2K2DP_HSZF_2024251
             }
             if (keyInfo.Key == ConsoleKey.W)
             {
-                appendEntity.Append();
+                appendOrModifyEntity.ChooseEntity(true);
                 Menu();
             }
             if (keyInfo.Key == ConsoleKey.E)
             {
-                modifyEntity.Modify();
+                appendOrModifyEntity.ChooseEntity(false);
                 Menu();
-            }
-        }
-        public void ListEntities()
-        {
-            Console.Write("Heroes:");
-            Console.SetCursorPosition(80, Console.GetCursorPosition().Top);
-            Console.WriteLine("Monsters:");
-            Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
-            Console.WriteLine();
-            
-            int i = 0;
-            while (i < ctx.Heroes.Count() && i < ctx.Monsters.Count())
-            {
-                Console.Write(ctx.Heroes.ElementAt(i));
-                Console.SetCursorPosition(80, Console.GetCursorPosition().Top);
-                Console.Write(ctx.Monsters.ElementAt(i));
-                Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
-                Console.WriteLine();
-                i++;
-            }
-            while (i < ctx.Heroes.Count())
-            {
-                Console.WriteLine(ctx.Heroes.ElementAt(i));
-                i++;
-            }
-            while (i < ctx.Monsters.Count())
-            {
-                Console.SetCursorPosition(80, Console.GetCursorPosition().Top);
-                Console.WriteLine(ctx.Heroes.ElementAt(i));
-                Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
-                i++;
-            }
-            Console.WriteLine("\nBattles:\n");
-            for (int j = 0; j < ctx.Battles.Count(); j++)
-            {
-                Console.WriteLine(ctx.Battles.ElementAt(j));
             }
         }
     }

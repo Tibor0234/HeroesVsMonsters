@@ -19,38 +19,20 @@ namespace C2K2DP_HSZF_2024251
             this.ctx = ctx;
             this.battleService = battleService;
         }
-        public void ListHeroes()
-        {
-            Console.Write("Heroes:\n");
-            int i = 0;
-            while (i < ctx.Heroes.Count())
-            {
-                Console.WriteLine(ctx.Heroes.ElementAt(i));
-                i++;
-            }
-        }
-        public void ListMonsters()
-        {
-            Console.Write("Monsters:\n");
-            int i = 0;
-            while (i < ctx.Monsters.Count())
-            {
-                Console.WriteLine(ctx.Monsters.ElementAt(i));
-                i++;
-            }
-        }
         public void PrepareBattle()
         {
             Console.Clear();
             Console.WriteLine("Battle (Choose Your Hero)\n");
-            ListHeroes();
+            Console.WriteLine("Heroes:");
+            ListEntities.ListHeroes(ctx);
             Console.Write("\nEnter your hero's number: ");
             int heroId = int.Parse(Console.ReadLine());
 
             Console.WriteLine();
             Console.Clear();
             Console.WriteLine("Battle (Choosing your opponent...)\n");
-            ListMonsters();
+            Console.WriteLine("Monsters:");
+            ListEntities.ListMonsters(ctx);
 
             int draw = battleService.DrawOpponent();
 

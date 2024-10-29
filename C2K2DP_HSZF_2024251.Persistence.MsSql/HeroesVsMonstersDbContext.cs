@@ -15,14 +15,14 @@ namespace C2K2DP_HSZF_2024251.Persistence.MsSql
         public DbSet<Monster> Monsters { get; set; }
         public DbSet<Battle> Battles { get; set; }
 
-        public HeroesVsMonstersDbContext()
+        public HeroesVsMonstersDbContext() 
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = @"Data Source=(localdb)\ProjectModels;Initial Catalog=HeroesVsMonsters;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=HeroesVsMonsters;Integrated Security=True;MultipleActiveResultSets=true";
             optionsBuilder.UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
         }

@@ -134,3 +134,4 @@ C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251\obj\Debug\ne
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Console.pdb
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Console.genruntimeconfig.cache
 C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251\obj\Debug\net8.0\ref\C2K2DP_HSZF_2024251.Console.dll
+C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251\obj\Debug\net8.0\C2K2DP_HSZF_2024251.Console.sourcelink.json
