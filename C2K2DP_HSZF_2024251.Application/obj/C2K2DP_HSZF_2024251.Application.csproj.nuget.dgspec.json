@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj": {}
+    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj": {
+    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj",
+        "projectUniqueName": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj",
         "projectName": "C2K2DP_HSZF_2024251.Application",
-        "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj",
+        "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\C2K2DP_HSZF_2024251.Application.csproj",
         "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\obj\\",
+        "outputPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
-                "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj"
+              "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
+                "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj"
               },
-              "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj": {
-                "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj"
+              "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj": {
+                "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
+    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
+        "projectUniqueName": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
         "projectName": "C2K2DP_HSZF_2024251.Model",
-        "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
+        "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
         "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\obj\\",
+        "outputPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -131,14 +131,14 @@
         }
       }
     },
-    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj": {
+    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj",
+        "projectUniqueName": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj",
         "projectName": "C2K2DP_HSZF_2024251.Persistence.MsSql",
-        "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj",
+        "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\C2K2DP_HSZF_2024251.Persistence.MsSql.csproj",
         "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\obj\\",
+        "outputPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Persistence.MsSql\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -155,8 +155,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
-                "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj"
+              "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
+                "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj"
               }
             }
           }

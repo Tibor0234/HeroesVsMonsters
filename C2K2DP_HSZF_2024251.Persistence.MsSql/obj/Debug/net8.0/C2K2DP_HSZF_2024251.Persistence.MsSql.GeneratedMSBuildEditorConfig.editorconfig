@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = C2K2DP_HSZF_2024251.Persistence.MsSql
-build_property.ProjectDir = C:\Users\peter\source\repos\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\
+build_property.ProjectDir = C:\C2K2DP_HSZF_2024251\C2K2DP_HSZF_2024251.Persistence.MsSql\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

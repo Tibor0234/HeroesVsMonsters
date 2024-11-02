@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("C2K2DP_HSZF_2024251.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d9b44688bc05566ad723523661ee7949a029c6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("C2K2DP_HSZF_2024251.Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("C2K2DP_HSZF_2024251.Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

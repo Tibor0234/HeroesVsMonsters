@@ -39,7 +39,7 @@ namespace C2K2DP_HSZF_2024251.Model
 
         public override string ToString()
         {
-            return $"{Id,2}. {Date.ToString(),-23} {Hero.Name,-15} vs  {Monster.Name,-15} :  {Result}";
+            return $"{Id,2}. {Date.ToString(),-23} {Hero.Name,-18} vs  {Monster.Name,-18} :  {Result}";
         }
     }
 }

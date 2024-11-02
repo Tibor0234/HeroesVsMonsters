@@ -40,12 +40,12 @@ namespace C2K2DP_HSZF_2024251.Application
             else
                 return false;
         }
-        public static bool ValidateStrengthAndSpeed(string strenghtOrSpeed, bool append)
+        public static bool ValidateStrengthAndSpeed(string strengthOrSpeed, bool append)
         {
-            if (strenghtOrSpeed.IsNullOrEmpty() && !append)
+            if (strengthOrSpeed.IsNullOrEmpty() && !append)
                 return true;
 
-            if (strenghtOrSpeed is int && int.Parse(strenghtOrSpeed) > 0 && int.Parse(strenghtOrSpeed) <= 100)
+            if (int.TryParse(strengthOrSpeed, out int value) && value > 0 && value <= 100)
             {
                 return true;
             }

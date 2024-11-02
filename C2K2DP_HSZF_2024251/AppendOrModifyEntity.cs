@@ -10,14 +10,9 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251
 {
-    public class AppendOrModifyEntity
+    public static class AppendOrModifyEntity
     {
-        HeroesVsMonstersDbContext ctx;
-        public AppendOrModifyEntity(HeroesVsMonstersDbContext ctx)
-        {
-            this.ctx = ctx;
-        }
-        public void ChooseEntity(bool append)
+        public static void ChooseEntity(HeroesVsMonstersDbContext ctx, bool append)
         {
             Console.Clear();
             Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
@@ -25,19 +20,19 @@ namespace C2K2DP_HSZF_2024251
             if (keyInfo.Key == ConsoleKey.H)
             {
                 if (append)
-                    AppendHero();
+                    AppendHero(ctx);
                 else
-                    ModifyHero();
+                    ModifyHero(ctx);
             }
             else if (keyInfo.Key == ConsoleKey.M)
             {
                 if (append)
-                    AppendMonster();
+                    AppendMonster(ctx);
                 else
-                    ModifyMonster();
+                    ModifyMonster(ctx);
             }
         }
-        public string[] SetHeroProperties(bool append)
+        public static string[] SetHeroProperties(bool append)
         {
             string[] properties = new string[5];
             Console.SetCursorPosition(0, 1);
@@ -71,7 +66,7 @@ namespace C2K2DP_HSZF_2024251
 
             return properties;
         }
-        public string[] SetMonsterProperties(bool append)
+        public static string[] SetMonsterProperties(bool append)
         {
             string[] properties = new string[4];
             Console.SetCursorPosition(0, 1);
@@ -93,7 +88,7 @@ namespace C2K2DP_HSZF_2024251
 
             return properties;
         }
-        public void AppendHero()
+        public static void AppendHero(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Name:\n");
@@ -119,7 +114,7 @@ namespace C2K2DP_HSZF_2024251
             Console.ReadKey();
         }
 
-        public void AppendMonster()
+        public static void AppendMonster(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Name:\n");
@@ -144,7 +139,7 @@ namespace C2K2DP_HSZF_2024251
             Console.ReadKey();
         }
 
-        public void ModifyHero()
+        public static void ModifyHero(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Heroes:\n");
@@ -183,12 +178,12 @@ namespace C2K2DP_HSZF_2024251
             }
             else
             {
-                Console.WriteLine("Invalid input, hero cannot be added.");
+                Console.WriteLine("Invalid input, hero cannot be modified.");
             }
             Console.ReadKey();
         }
 
-        public void ModifyMonster()
+        public static void ModifyMonster(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Monsters:\n");

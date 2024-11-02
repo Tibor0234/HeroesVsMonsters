@@ -15,7 +15,7 @@ namespace C2K2DP_HSZF_2024251
         }
         private static void SeedDb()
         {
-            var dbctx = new HeroesVsMonstersDbContext();
+            var ctx = new HeroesVsMonstersDbContext();
 
             //Heroes
 
@@ -34,7 +34,7 @@ namespace C2K2DP_HSZF_2024251
 
             foreach (var hero in heroes)
             {
-                dbctx.Heroes.Add(hero);
+                ctx.Heroes.Add(hero);
             }
 
             //Monsters
@@ -54,17 +54,12 @@ namespace C2K2DP_HSZF_2024251
 
             foreach (var monster in monsters)
             {
-                dbctx.Monsters.Add(monster);
+                ctx.Monsters.Add(monster);
             }
 
-            dbctx.SaveChanges();
+            ctx.SaveChanges();
 
-            BattleService battleService = new BattleService(dbctx);
-            BattleSimulation battleSimulation = new BattleSimulation(dbctx, battleService);
-            AppendOrModifyEntity appendOrModifyEntity = new AppendOrModifyEntity(dbctx);
-            MainMenu mainMenu = new(dbctx, battleSimulation, appendOrModifyEntity);
-
-            mainMenu.Menu();
+            MainMenu.Menu(ctx);
         }
     }
 }

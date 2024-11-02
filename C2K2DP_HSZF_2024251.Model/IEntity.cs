@@ -14,5 +14,6 @@ namespace C2K2DP_HSZF_2024251.Model
         int Speed { get; set; }
         int Health { get; set; }
         ICollection<Battle> Battles { get; set; }
+        public void BattleInit();
     }
 }

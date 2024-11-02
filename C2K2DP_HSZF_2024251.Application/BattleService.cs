@@ -13,26 +13,17 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public class BattleService
+    public static class BattleService
     {
-        HeroesVsMonstersDbContext ctx;
-        Hero Hero { get; set; }
-        Monster Monster { get; set; }
-        bool round;
-        public bool Round { get { round = !round; return round; } }
-        public bool BattleEnded { get; set; }
-        public BattleService(HeroesVsMonstersDbContext ctx)
-        {
-            this.ctx = ctx;
-            this.round = false;
-            BattleEnded = false;
-        }
-        public int DrawOpponent()
+        public static bool round;
+        public static bool Round { get { round = !round; return round; } }
+        public static bool BattleEnded { get; set; }
+        public static int DrawOpponent()
         {
             Random rnd = new Random();
             return rnd.Next(60, 80);
         }
-        public int GetOpponentId(int draw)
+        public static int GetOpponentId(HeroesVsMonstersDbContext ctx, int draw)
         {
             if (draw % ctx.Monsters.Count() == 0)
             {
@@ -43,38 +34,30 @@ namespace C2K2DP_HSZF_2024251.Application
                 return draw % ctx.Monsters.Count();
             }
         }
-        public Hero FindHero(int heroId)
+        public static Hero FindHero(HeroesVsMonstersDbContext ctx, int heroId) => ctx.Heroes.Find(heroId);
+        public static Monster FindMonster(HeroesVsMonstersDbContext ctx, int monsterId) => ctx.Monsters.Find(monsterId);
+        public static void BattleInitialization(Hero hero, Monster monster)
         {
-            Hero = ctx.Heroes.Find(heroId);
-            return Hero;
+            hero.BattleInit();
+            monster.BattleInit();
         }
-        public Monster FindMonster(int monsterId)
+        public static bool BattleOn(Hero hero, Monster monster)
         {
-            Monster = ctx.Monsters.Find(monsterId);
-            return Monster;
-        }
-        public void BattleInitialization()
-        {
-            Hero.BattleInit();
-            Monster.BattleInit();
-        }
-        public bool BattleOn()
-        {
-            if (Hero.Health > 0 && Monster.Health > 0)
+            if (hero.Health > 0 && monster.Health > 0)
                 return true;
             else if (!BattleEnded)
             {
                 BattleEnded = true;
-                if (Hero.Health <= 0)
-                    Hero.Health = 0;
+                if (hero.Health <= 0)
+                    hero.Health = 0;
                 else
-                    Monster.Health = 0;
+                    monster.Health = 0;
                 return true;
             }
             else
                 return false;
         }
-        public void Attack(IEntity attacker, IEntity attacked)
+        public static void Attack(IEntity attacker, IEntity attacked)
         {
             Random rnd = new Random();
             int Attack = rnd.Next(attacker.Strength - 30, attacker.Strength + 30);
@@ -93,11 +76,11 @@ namespace C2K2DP_HSZF_2024251.Application
                 attackerHero.Manna += Damage;
             }
         }
-        public bool HeroWon()
+        public static bool HeroWon(HeroesVsMonstersDbContext ctx, Hero hero, Monster monster)
         {
             string result;
             bool value;
-            if (Monster.Health <= 0)
+            if (monster.Health <= 0)
             {
                 result = "Hero won";
                 value = true;
@@ -107,9 +90,9 @@ namespace C2K2DP_HSZF_2024251.Application
                 result = "Monster won";
                 value = false;
             }
-            Battle battle = new Battle(Hero, Monster, DateTime.Now, result);
-            Hero.Battles.Add(battle);
-            Monster.Battles.Add(battle);
+            Battle battle = new Battle(hero, monster, DateTime.Now, result);
+            hero.Battles.Add(battle);
+            monster.Battles.Add(battle);
             ctx.Battles.Add(battle);
             ctx.SaveChanges();
             round = false;

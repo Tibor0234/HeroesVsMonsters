@@ -10,16 +10,9 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251
 {
-    public class BattleSimulation
+    public static class BattleSimulation
     {
-        HeroesVsMonstersDbContext ctx;
-        BattleService battleService;
-        public BattleSimulation(HeroesVsMonstersDbContext ctx, BattleService battleService)
-        {
-            this.ctx = ctx;
-            this.battleService = battleService;
-        }
-        public void PrepareBattle()
+        public static void PrepareBattle(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Battle (Choose Your Hero)\n");
@@ -34,7 +27,7 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("Monsters:");
             ListEntities.ListMonsters(ctx);
 
-            int draw = battleService.DrawOpponent();
+            int draw = BattleService.DrawOpponent();
 
             for (int i = 0; i < draw; i++)
             {
@@ -58,53 +51,60 @@ namespace C2K2DP_HSZF_2024251
                     Console.ReadKey();
                 }
             }
-            int monsterId = battleService.GetOpponentId(draw);
+            int monsterId = BattleService.GetOpponentId(ctx, draw);
             
-            SimulateBattle(heroId, monsterId);
+            SimulateBattle(heroId, monsterId, ctx);
         }
-        public void SimulateBattle(int heroId, int monsterId)
+        public static void SimulateBattle(int heroId, int monsterId, HeroesVsMonstersDbContext ctx)
         {
-            Hero hero = battleService.FindHero(heroId);
-            Monster monster = battleService.FindMonster(monsterId);
+            Hero hero = BattleService.FindHero(ctx, heroId);
+            Monster monster = BattleService.FindMonster(ctx, monsterId);
             HeroAbilities heroAbilities = new(hero);
-            battleService.BattleInitialization();
+            BattleService.BattleInitialization(hero, monster);
+            BattleService.round = false;
 
-            while (battleService.BattleOn())
+            while (BattleService.BattleOn(hero, monster))
             {
                 Console.Clear();
                 Console.Write(hero.ToStringInBattle());
                 Console.SetCursorPosition(70, Console.GetCursorPosition().Top);
                 Console.WriteLine(monster.ToStringInBattle());
                 Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
-                if (!battleService.BattleEnded)
+                if (!BattleService.BattleEnded)
                 {
-                    if (battleService.Round)
+                    if (BattleService.Round)
                     {
                         if (hero.Manna >= hero.MaxManna)
                         {
-                            Console.Write("\nAbilities: " + hero.Abilities + "\nType ability name to use ability or press [Enter] for regular attack: ");
+                            string[] listOfAbilities = hero.Abilities.Split(" ");
+                            Console.Write("\nAbilities: ");
+                            for (int i = 0; i < listOfAbilities.Length; i++)
+                            {
+                                Console.Write($"{i + 1}. {listOfAbilities[i]}");
+                            }
+                            Console.Write("\nType ability number to use ability or press [Enter] for regular attack: ");
                             string ability = Console.ReadLine();
                             if (ability.IsNullOrEmpty())
-                                battleService.Attack(hero, monster);
+                                BattleService.Attack(hero, monster);
                             else
-                                heroAbilities.UseAbility(ability);
+                                heroAbilities.UseAbility(int.Parse(ability));
                         }
                         else
                         {
                             Console.WriteLine($"\nAbilities: {hero.Manna}%");
-                            battleService.Attack(hero, monster);
+                            BattleService.Attack(hero, monster);
                             Console.ReadKey();
                         }
                     }                    
                     else
                     {
                         Console.WriteLine("\nMonster attacking...");
-                        battleService.Attack(monster, hero);
+                        BattleService.Attack(monster, hero);
                         Console.ReadKey();
                     }
                 }
             }
-            if (battleService.HeroWon())
+            if (BattleService.HeroWon(ctx, hero, monster))
             {
                 Console.WriteLine("\nVictory");
             }

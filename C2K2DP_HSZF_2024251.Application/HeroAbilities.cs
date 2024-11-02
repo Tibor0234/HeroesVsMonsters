@@ -12,42 +12,17 @@ namespace C2K2DP_HSZF_2024251.Application
     public class HeroAbilities
     {
         Hero hero;
-        public string[] AllAbilities { get {
-                return typeof(HeroAbilities)
-            .GetMethods()
-            .Where(m => m.Name.Contains("Ability_"))
-            .Select(m => m.Name.Substring(8))
-            .ToArray();
-            } }
         public HeroAbilities(Hero hero)
         {
             this.hero = hero;
         }
-
-        public void LoadAbility(string abilityName)
+        public void UseAbility(int abilityNumber)
         {
-            if (AllAbilities.Contains(abilityName))
-            {
-                hero.Abilities += ", " + abilityName;
-            }
-            else
-            {
-                Console.WriteLine("There is no ability called " + abilityName + ".");
-            }
-        }
-
-        public void UseAbility(string abilityName)
-        {
-            if (AllAbilities.Contains(abilityName))
-            {
-                MethodInfo method = typeof(HeroAbilities).GetMethod($"Ability_{abilityName}");
-                method.Invoke(this,null);
-                hero.Manna = 0;
-            }
-            else
-            {
-                Console.WriteLine("There is no ability called " + abilityName + ".");
-            }
+            string[] ListOfAbilities = hero.Abilities.Split(", ");
+            string abilityName = ListOfAbilities[abilityNumber - 1];
+            MethodInfo method = typeof(HeroAbilities).GetMethod($"Ability_{abilityName}");
+            method.Invoke(this,null);
+            hero.Manna = 0;
         }
         public void Ability_LightningStrike()
         {
