@@ -30,12 +30,8 @@ namespace C2K2DP_HSZF_2024251.Application
             properties[3] = Console.ReadLine();
             if (!Validation.ValidateStrengthAndSpeed(properties[3], append))
                 return ["failed"];
-
-            string listOfAbilities = "";
-            foreach (string ability in HeroAbilities.ListOfAbilities)
-                listOfAbilities += ", " + ability;
             Console.SetCursorPosition(0, 11);
-            Console.Write("List Of Abilities: " + listOfAbilities.Substring(2));
+            Console.Write("List Of Abilities: " + HeroAbilities.AllAbilities);
 
             Console.SetCursorPosition(0, 9);
             properties[4] = Console.ReadLine();

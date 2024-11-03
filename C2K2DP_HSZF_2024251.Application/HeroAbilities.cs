@@ -17,6 +17,17 @@ namespace C2K2DP_HSZF_2024251.Application
                             .Select(t => t.Name)
                             .ToArray();
             } }
+        public static string AllAbilities
+        {
+            get
+            {
+                string abilities = "";
+                foreach (var ability in ListOfAbilities)
+                {
+                    abilities += ", " + ability;
+                }
+                return abilities.Substring(2);
+            } }
         public static void UseAbility()
         {
             

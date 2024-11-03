@@ -1,5 +1,7 @@
 ﻿using C2K2DP_HSZF_2024251.Application;
+using C2K2DP_HSZF_2024251.Model;
 using C2K2DP_HSZF_2024251.Persistence.MsSql;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,19 +57,19 @@ namespace C2K2DP_HSZF_2024251
                     AddAbility();
                     break;
                 case 4:
-                    BattleStatistics();
+                    //BattleStatistics(ctx);
                     break;
                 case 5:
-                    SearchBy();
+                    SearchBy(ctx);
                     break;
                 case 6:
-                    ListBy();
+                    ListBy(ctx);
                     break;
                 case 7:
-                    Xml();
+                    //Xml(ctx);
                     break;
                 case 8:
-                    Reports();
+                    //Reports(ctx);
                     break;
             }
         }
@@ -88,23 +90,81 @@ namespace C2K2DP_HSZF_2024251
         {
 
         }
-        public static void SearchBy()
+        public static void SearchBy(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
             Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            if (keyInfo.Key == ConsoleKey.H)
+            IEntity[] selected = new IEntity[Math.Max(ctx.Heroes.Count(), ctx.Monsters.Count())];
+            bool isHero;
+            if (keyInfo.Key == ConsoleKey.H || keyInfo.Key == ConsoleKey.M)
             {
+                if (keyInfo.Key == ConsoleKey.H)
+                    isHero = true;
+                else
+                    isHero = false;
 
-            }
-            else if (keyInfo.Key == ConsoleKey.M)
-            {
+                Console.Clear();
+                Console.WriteLine("Name:\n");
+                if (isHero)
+                    Console.WriteLine("Category (C, B, A, S):\n");
+                else
+                    Console.WriteLine("Level (Vampire, Daemon, Golem, Dragon):\n");
+                Console.WriteLine("Strength (1-100):\n");
+                Console.WriteLine("Speed (1-100):\n");
 
-            }
+                selected = MoreOptionsService.SearchBy(ctx, isHero);
+                foreach (var entity in selected)
+                {
+                    if (entity == null)
+                        break;
+                    Console.WriteLine(entity);
+                }
+                Console.ReadKey();
+            }                
         }
-        public static void ListBy()
+        public static void ListBy(HeroesVsMonstersDbContext ctx)
         {
+            Console.Clear();
+            Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            bool isHero;
+            if (keyInfo.Key == ConsoleKey.H || keyInfo.Key == ConsoleKey.M)
+            {
+                if (keyInfo.Key == ConsoleKey.H)
+                    isHero = true;
+                else
+                    isHero = false;
+                Console.Clear();
+                Console.WriteLine("List by: ");
+                int cursor = 0;
+                do
+                {
+                    if (cursor < 0)
+                        cursor = 3;
+                    else if (cursor > 3)
+                        cursor = 0;
+                    string[] rows = ["Name", "Category", "Strength", "Speed", "Level"];
 
+                    Console.SetCursorPosition(10, 0);
+                    if (isHero)
+                        Console.WriteLine(rows[cursor]);
+                    else if (cursor == 1)
+                        Console.WriteLine(rows[4]);
+
+                    if (keyInfo.Key == ConsoleKey.DownArrow)
+                    {
+                        cursor++;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.UpArrow)
+                    {
+                        cursor--;
+                    }
+
+                    Console.WriteLine("\n(Use up / down arrows to navigate, press Enter to select option)");
+                    Console.ReadKey();
+                } while (keyInfo.Key != ConsoleKey.Enter);
+            }
         }
         public static void Xml()
         {

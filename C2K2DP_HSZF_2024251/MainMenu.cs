@@ -18,13 +18,13 @@ namespace C2K2DP_HSZF_2024251
             Console.Clear();
             ListEntities.ListAll(ctx);
 
-            Console.Write("\nEnter battle: [Q]");
+            Console.Write("\nEnter battle [Q]");
             Console.SetCursorPosition(35, Console.GetCursorPosition().Top);
-            Console.Write("Add new entity: [W]");
+            Console.Write("Add new entity [W]");
             Console.SetCursorPosition(70, Console.GetCursorPosition().Top);
-            Console.Write("Modify entity: [E]");
+            Console.Write("Modify entity [E]");
             Console.SetCursorPosition(105, Console.GetCursorPosition().Top);
-            Console.WriteLine("More options: [R]");
+            Console.WriteLine("More options [R]");
             ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
             if (keyInfo.Key == ConsoleKey.Q)
             {
