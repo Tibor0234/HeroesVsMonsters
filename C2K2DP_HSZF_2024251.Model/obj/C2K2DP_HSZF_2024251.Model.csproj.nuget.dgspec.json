@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {}
+    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {}
   },
   "projects": {
-    "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
+    "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
+        "projectUniqueName": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
         "projectName": "C2K2DP_HSZF_2024251.Model",
-        "projectPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
+        "projectPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\C2K2DP_HSZF_2024251.Model.csproj",
         "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-        "outputPath": "C:\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\obj\\",
+        "outputPath": "C:\\Users\\peter\\source\\repos\\C2K2DP_HSZF_2024251\\C2K2DP_HSZF_2024251.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",

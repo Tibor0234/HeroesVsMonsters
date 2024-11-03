@@ -32,62 +32,6 @@ namespace C2K2DP_HSZF_2024251
                     ModifyMonster(ctx);
             }
         }
-        public static string[] SetHeroProperties(bool append)
-        {
-            string[] properties = new string[5];
-            Console.SetCursorPosition(0, 1);
-            properties[0] = Console.ReadLine();
-            if (!Validation.ValidateName(properties[0], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 3);
-            properties[1] = Console.ReadLine();
-            if (!Validation.ValidateCategory(properties[1], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 5);
-            properties[2] = Console.ReadLine();
-            if (!Validation.ValidateStrengthAndSpeed(properties[2], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 7);
-            properties[3] = Console.ReadLine();
-            if (!Validation.ValidateStrengthAndSpeed(properties[3], append))
-                return ["failed"];
-
-            string listOfAbilities = string.Join(", ", typeof(HeroAbilities)
-            .GetMethods()
-            .Where(m => m.Name.Contains("Ability_"))
-            .Select(m => m.Name.Substring(8)));
-            Console.SetCursorPosition(0, 11);
-            Console.Write("List Of Abilities: " + listOfAbilities);
-
-            Console.SetCursorPosition(0, 9);
-            properties[4] = Console.ReadLine();
-            if (!Validation.ValidateAbilities(properties[4], append))
-                return ["failed"];
-
-            return properties;
-        }
-        public static string[] SetMonsterProperties(bool append)
-        {
-            string[] properties = new string[4];
-            Console.SetCursorPosition(0, 1);
-            properties[0] = Console.ReadLine();
-            if (!Validation.ValidateName(properties[0], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 3);
-            properties[1] = Console.ReadLine();
-            if (!Validation.ValidateLevel(properties[1], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 5);
-            properties[2] = Console.ReadLine();
-            if (!Validation.ValidateStrengthAndSpeed(properties[2], append))
-                return ["failed"];
-            Console.SetCursorPosition(0, 7);
-            properties[3] = Console.ReadLine();
-            if (!Validation.ValidateStrengthAndSpeed(properties[3], append))
-                return ["failed"];
-
-            return properties;
-        }
         public static void AppendHero(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
@@ -97,7 +41,7 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("Speed (1-100):\n");
             Console.WriteLine("Abilities (Ability1, Ability2, ...):");
 
-            string[] properties = SetHeroProperties(true);
+            string[] properties = AppendOrModifyEntityService.GetHeroProperties(true);
 
             Console.SetCursorPosition(0, 13);
             if (properties[0] != "failed")
@@ -122,7 +66,7 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("Strength (1-100):\n");
             Console.WriteLine("Speed (1-100):\n");
 
-            string[] properties = SetMonsterProperties(true);
+            string[] properties = AppendOrModifyEntityService.GetMonsterProperties(true);
             
             Console.SetCursorPosition(0, 9);
             if (properties[0] != "failed")
@@ -158,22 +102,13 @@ namespace C2K2DP_HSZF_2024251
             Console.SetCursorPosition(0, 13);
             Console.WriteLine("(Leave blank to keep previus setting)");
 
-            string[] properties = SetHeroProperties(false);
+            string[] properties = AppendOrModifyEntityService.GetHeroProperties(false);
 
             Console.SetCursorPosition(0, 15);
             if (properties[0] != "failed")
             {
                 Console.WriteLine("Hero modified successfully.");
-                if (!properties[0].IsNullOrEmpty())
-                    hero.Name = properties[0];
-                if (!properties[1].IsNullOrEmpty())
-                    hero.Category = properties[1];
-                if (!properties[2].IsNullOrEmpty())
-                    hero.Strength = int.Parse(properties[2]);
-                if (!properties[3].IsNullOrEmpty())
-                    hero.Speed = int.Parse(properties[3]);
-                if (!properties[4].IsNullOrEmpty())
-                    hero.Abilities = properties[4];
+                AppendOrModifyEntityService.SetHeroProperties(hero, properties);
                 ctx.Heroes.Update(hero);
             }
             else
@@ -201,20 +136,13 @@ namespace C2K2DP_HSZF_2024251
             Console.SetCursorPosition(0, 9);
             Console.WriteLine("(Leave blank to keep previus setting)");
 
-            string[] properties = SetMonsterProperties(false);
+            string[] properties = AppendOrModifyEntityService.GetMonsterProperties(false);
             
             Console.SetCursorPosition(0, 11);
             if (properties[0] != "failed")
             {
                 Console.WriteLine("Monster modified successfully.");
-                if (!properties[0].IsNullOrEmpty())
-                    monster.Name = properties[0];
-                if (!properties[1].IsNullOrEmpty())
-                    monster.Level = properties[1];
-                if (!properties[2].IsNullOrEmpty())
-                    monster.Strength = int.Parse(properties[2]);
-                if (!properties[3].IsNullOrEmpty())
-                    monster.Speed = int.Parse(properties[3]);
+                AppendOrModifyEntityService.SetMonsterProperties(monster, properties);
                 ctx.Monsters.Update(monster);
             }
             else

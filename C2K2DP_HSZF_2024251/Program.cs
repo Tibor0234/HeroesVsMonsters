@@ -4,6 +4,7 @@ using C2K2DP_HSZF_2024251.Model;
 using C2K2DP_HSZF_2024251.Application;
 using System.Reflection;
 using Azure;
+using System.Security.Cryptography;
 
 namespace C2K2DP_HSZF_2024251
 {

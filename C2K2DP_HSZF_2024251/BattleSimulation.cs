@@ -59,7 +59,6 @@ namespace C2K2DP_HSZF_2024251
         {
             Hero hero = BattleService.FindHero(ctx, heroId);
             Monster monster = BattleService.FindMonster(ctx, monsterId);
-            HeroAbilities heroAbilities = new(hero);
             BattleService.BattleInitialization(hero, monster);
             BattleService.round = false;
 
@@ -86,8 +85,8 @@ namespace C2K2DP_HSZF_2024251
                             string ability = Console.ReadLine();
                             if (ability.IsNullOrEmpty())
                                 BattleService.Attack(hero, monster);
-                            else
-                                heroAbilities.UseAbility(int.Parse(ability));
+                            //else
+                                //heroAbilities.UseAbility(int.Parse(ability));
                         }
                         else
                         {

@@ -60,14 +60,9 @@ namespace C2K2DP_HSZF_2024251.Application
                 return true;
 
             string[] abilitiesSplitted = abilities.Split(", ");
-            string[] allAbilities = typeof(HeroAbilities)
-            .GetMethods()
-            .Where(m => m.Name.Contains("Ability_"))
-            .Select(m => m.Name.Substring(8))
-            .ToArray();
             for (int i = 0; i < abilitiesSplitted.Length; i++)
             {
-                if (!allAbilities.Contains(abilitiesSplitted[i]))
+                if (!HeroAbilities.ListOfAbilities.Contains(abilitiesSplitted[i]))
                 {
                     return false;
                 }

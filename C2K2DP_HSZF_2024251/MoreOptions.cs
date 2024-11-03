@@ -21,7 +21,7 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("- List by");
             Console.WriteLine("- Xml export and import");
             Console.WriteLine("- Reports");
-            Console.WriteLine("\n(Use up / down arrows to navigate, press enter to select option)");
+            Console.WriteLine("\n(Use up / down arrows to navigate, press Enter to select option)");
             ConsoleKeyInfo keyInfo;
             int cursor = 2;
             do
@@ -74,7 +74,6 @@ namespace C2K2DP_HSZF_2024251
         public static void SimulateBattles(HeroesVsMonstersDbContext ctx)
         {
             Console.Clear();
-            Console.WriteLine("Battle Simulation:\n");
             Console.Write("Enter how many battles you want to simulate: ");
             int simulationCount = int.Parse(Console.ReadLine());
             MoreOptionsService.BattleSimulation(ctx, simulationCount);
@@ -91,7 +90,17 @@ namespace C2K2DP_HSZF_2024251
         }
         public static void SearchBy()
         {
+            Console.Clear();
+            Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            if (keyInfo.Key == ConsoleKey.H)
+            {
 
+            }
+            else if (keyInfo.Key == ConsoleKey.M)
+            {
+
+            }
         }
         public static void ListBy()
         {

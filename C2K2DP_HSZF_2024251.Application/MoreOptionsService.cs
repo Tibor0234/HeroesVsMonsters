@@ -21,18 +21,15 @@ namespace C2K2DP_HSZF_2024251.Application
                 Hero hero = ctx.Heroes.Find(heroId);
                 Monster monster = ctx.Monsters.Find(monsterId);
                 int result = rnd.Next(0, 2);
+                Battle newBattle;
                 if (result == 0)
-                {
-                    Battle newBattle = new Battle(hero, monster, DateTime.Now, "Hero won");
-                    ctx.Battles.Add(newBattle);
-                    ctx.SaveChanges();
-                }
+                    newBattle = new Battle(hero, monster, DateTime.Now, "Hero won");
                 else
-                {
-                    Battle newBattle = new Battle(hero, monster, DateTime.Now, "Monster won");
-                    ctx.Battles.Add(newBattle);
-                    ctx.SaveChanges();
-                }
+                    newBattle = new Battle(hero, monster, DateTime.Now, "Monster won");
+                hero.Battles.Add(newBattle);
+                monster.Battles.Add(newBattle);
+                ctx.Battles.Add(newBattle);
+                ctx.SaveChanges();
             }
         }
     }
