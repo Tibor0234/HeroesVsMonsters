@@ -25,7 +25,7 @@ namespace C2K2DP_HSZF_2024251.Application
             if (category.IsNullOrEmpty() && !append)
                 return true;
 
-            if (new string[] {"S", "A", "B", "C"}.Contains(category))
+            if (new string[] {"s", "a", "b", "c"}.Contains(category.ToLower()))
                 return true;
             else
                 return false;
@@ -35,7 +35,7 @@ namespace C2K2DP_HSZF_2024251.Application
             if (level.IsNullOrEmpty() && !append)
                 return true;
 
-            if (new string[] { "Dragon", "Golem", "Daemon", "Vampire" }.Contains(level))
+            if (new string[] { "dragon", "golem", "daemon", "vampire" }.Contains(level.ToLower()))
                 return true;
             else
                 return false;
@@ -62,7 +62,7 @@ namespace C2K2DP_HSZF_2024251.Application
             string[] abilitiesSplitted = abilities.Split(", ");
             for (int i = 0; i < abilitiesSplitted.Length; i++)
             {
-                if (!HeroAbilities.ListOfAbilities.Contains(abilitiesSplitted[i]))
+                if (!HeroAbilities.ListOfAbilities.Select(a => a.ToLower()).Contains(abilitiesSplitted[i].ToLower()))
                 {
                     return false;
                 }

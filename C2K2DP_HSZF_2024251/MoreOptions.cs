@@ -57,7 +57,7 @@ namespace C2K2DP_HSZF_2024251
                     AddAbility();
                     break;
                 case 4:
-                    //BattleStatistics(ctx);
+                    BattleStatistics(ctx);
                     break;
                 case 5:
                     SearchBy(ctx);
@@ -66,7 +66,7 @@ namespace C2K2DP_HSZF_2024251
                     ListBy(ctx);
                     break;
                 case 7:
-                    //Xml(ctx);
+                    Xml(ctx);
                     break;
                 case 8:
                     //Reports(ctx);
@@ -78,7 +78,7 @@ namespace C2K2DP_HSZF_2024251
             Console.Clear();
             Console.Write("Enter how many battles you want to simulate: ");
             int simulationCount = int.Parse(Console.ReadLine());
-            MoreOptionsService.BattleSimulation(ctx, simulationCount);
+            Application.More_SimulateBattles.Simulate(ctx, simulationCount);
             Console.WriteLine("\nBattles have been simulated successfully.");
             Console.ReadKey();
         }
@@ -86,89 +86,95 @@ namespace C2K2DP_HSZF_2024251
         {
 
         }
-        public static void BattleStatistics()
+        public static void BattleStatistics(HeroesVsMonstersDbContext ctx)
         {
+            Console.Clear();
+            Console.Write("Heroes win rate: ");
 
+            Console.WriteLine(More_BattleStatistics.HeroesWinRate(ctx) + "%\n");
+            Console.WriteLine("Monsters Defeated:\n");
+            Monster[] defeated = More_BattleStatistics.DefeatedMonsters(ctx);
+            for (int i = 0; i < defeated.Length; i++)
+            {
+                Console.WriteLine($"{i + 1,2}.  |  {defeated[i]}");
+            }
+            Console.ReadKey();
+        }
+        public static bool ChooseEntity(HeroesVsMonstersDbContext ctx)
+        {
+            Console.Clear();
+            Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            bool isHero;
+            if (keyInfo.Key == ConsoleKey.H)
+                return true;
+            else
+                return false;
         }
         public static void SearchBy(HeroesVsMonstersDbContext ctx)
         {
+            bool isHero = ChooseEntity(ctx);
             Console.Clear();
-            Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            Console.WriteLine("Name:\n");
+            if (isHero) Console.WriteLine("Category (C, B, A, S):\n");
+            else Console.WriteLine("Level (Vampire, Daemon, Golem, Dragon):\n");
+            Console.WriteLine("Strength (1-100):\n");
+            Console.WriteLine("Speed (1-100):\n");
+
             IEntity[] selected = new IEntity[Math.Max(ctx.Heroes.Count(), ctx.Monsters.Count())];
-            bool isHero;
-            if (keyInfo.Key == ConsoleKey.H || keyInfo.Key == ConsoleKey.M)
+            selected = Application.More_SearchBy.Search(ctx, isHero);
+            for (int i = 0; i < selected.Length; i++)
             {
-                if (keyInfo.Key == ConsoleKey.H)
-                    isHero = true;
-                else
-                    isHero = false;
-
-                Console.Clear();
-                Console.WriteLine("Name:\n");
-                if (isHero)
-                    Console.WriteLine("Category (C, B, A, S):\n");
-                else
-                    Console.WriteLine("Level (Vampire, Daemon, Golem, Dragon):\n");
-                Console.WriteLine("Strength (1-100):\n");
-                Console.WriteLine("Speed (1-100):\n");
-
-                selected = MoreOptionsService.SearchBy(ctx, isHero);
-                foreach (var entity in selected)
-                {
-                    if (entity == null)
-                        break;
-                    Console.WriteLine(entity);
-                }
-                Console.ReadKey();
-            }                
+                if (selected[i] == null)
+                    break;
+                Console.WriteLine($"{i + 1,2}.  |  {selected[i]}");
+            }
+            Console.ReadKey();         
         }
         public static void ListBy(HeroesVsMonstersDbContext ctx)
         {
+            bool isHero = ChooseEntity(ctx);
             Console.Clear();
-            Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            bool isHero;
-            if (keyInfo.Key == ConsoleKey.H || keyInfo.Key == ConsoleKey.M)
+            Console.WriteLine("List by: ");
+            Console.WriteLine("\n(Use Tab to toggle, press Enter to select option)");
+            ConsoleKeyInfo keyInfo;
+            bool listStrength = true;
+            do
             {
-                if (keyInfo.Key == ConsoleKey.H)
-                    isHero = true;
+                Console.SetCursorPosition(10, 0);
+                if (listStrength)
+                    Console.WriteLine("Strength");
                 else
-                    isHero = false;
-                Console.Clear();
-                Console.WriteLine("List by: ");
-                int cursor = 0;
-                do
+                    Console.WriteLine("Speed   ");
+                keyInfo = Console.ReadKey();
+                if (keyInfo.Key == ConsoleKey.Tab)
                 {
-                    if (cursor < 0)
-                        cursor = 3;
-                    else if (cursor > 3)
-                        cursor = 0;
-                    string[] rows = ["Name", "Category", "Strength", "Speed", "Level"];
+                    if (listStrength)
+                        listStrength = false;
+                    else
+                        listStrength = true;
+                }
+            } while (keyInfo.Key != ConsoleKey.Enter);
 
-                    Console.SetCursorPosition(10, 0);
-                    if (isHero)
-                        Console.WriteLine(rows[cursor]);
-                    else if (cursor == 1)
-                        Console.WriteLine(rows[4]);
+            IEntity[] selection = new IEntity[Math.Max(ctx.Heroes.Count(), ctx.Monsters.Count())];
+            Console.SetCursorPosition(0, 4);
 
-                    if (keyInfo.Key == ConsoleKey.DownArrow)
-                    {
-                        cursor++;
-                    }
-                    else if (keyInfo.Key == ConsoleKey.UpArrow)
-                    {
-                        cursor--;
-                    }
+            if (listStrength)
+                selection = Application.More_ListBy.List(ctx, "Strength", isHero);
+            else
+                selection = Application.More_ListBy.List(ctx, "Speed", isHero);
 
-                    Console.WriteLine("\n(Use up / down arrows to navigate, press Enter to select option)");
-                    Console.ReadKey();
-                } while (keyInfo.Key != ConsoleKey.Enter);
+            for (int i = 0; i < selection.Length; i++)
+            {
+                if (selection[i] == null)
+                    break;
+                Console.WriteLine($"{i+1,2}.  |  {selection[i]}");
             }
+            Console.ReadKey();
         }
-        public static void Xml()
+        public static void Xml(HeroesVsMonstersDbContext ctx)
         {
-
+            More_Xml.ExportEntities(ctx);
         }
         public static void Reports()
         {
