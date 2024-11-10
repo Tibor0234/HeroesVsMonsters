@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace C2K2DP_HSZF_2024251.Model
 {
-    public class Monster : IEntity
+    public class Monster : IEntity, IHasId
     {
         public Monster() { }
 
@@ -30,9 +31,11 @@ namespace C2K2DP_HSZF_2024251.Model
         public int Strength { get; set; }
         public int Speed { get; set; }
         [NotMapped]
+        [XmlIgnore]
         public int Health { get; set; }
         private int MaxHealth { get; set; }
         [NotMapped]
+        [XmlIgnore]
         public ICollection<Battle> Battles { get; set; }
 
         public override string ToString()

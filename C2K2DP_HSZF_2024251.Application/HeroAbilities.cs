@@ -9,15 +9,20 @@ using System.Reflection;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class HeroAbilities
+    public interface IHeroAbilities
     {
-        public static string[] ListOfAbilities { get { 
+        public string[] ListOfAbilities { get; }
+        public string AllAbilities { get; }
+    }
+    public class HeroAbilities : IHeroAbilities
+    {
+        public string[] ListOfAbilities { get { 
             return Assembly.GetExecutingAssembly().GetTypes()
                             .Where(t => typeof(IAbility).IsAssignableFrom(t) && !t.IsInterface)
                             .Select(t => t.Name)
                             .ToArray();
             } }
-        public static string AllAbilities
+        public string AllAbilities
         {
             get
             {
@@ -28,11 +33,11 @@ namespace C2K2DP_HSZF_2024251.Application
                 }
                 return abilities.Substring(2);
             } }
-        public static void UseAbility()
+        public void UseAbility()
         {
             
         }
-        public static void LoadAbilities()
+        public void LoadAbilities()
         {
 
         }

@@ -13,17 +13,37 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class BattleService
+    public interface IBattleService
     {
-        public static bool round;
-        public static bool Round { get { round = !round; return round; } }
-        public static bool BattleEnded { get; set; }
-        public static int DrawOpponent()
+        public bool Round { get; }
+        public bool BattleEnded { get; set; }
+        public int DrawOpponent();
+        public int GetOpponentId(int draw);
+        public Hero FindHero(int heroId);
+        public Monster FindMonster(int monsterId);
+        public void BattleInitialization(Hero hero, Monster monster);
+        public bool BattleOn(Hero hero, Monster monster);
+        public bool AbilityReady(Hero hero);
+        public void Attack(IEntity attacker, IEntity attacked);
+        public bool HeroWon(Hero hero, Monster monster);
+    }
+    public class BattleService : IBattleService
+    {
+        IHeroesVsMonstersDbContext ctx;
+        public BattleService(IHeroesVsMonstersDbContext ctx)
+        {
+            this.ctx = ctx;
+            round = false;
+        }
+        private bool round;
+        public bool Round { get { round = !round; return round; } }
+        public bool BattleEnded { get; set; }
+        public int DrawOpponent()
         {
             Random rnd = new Random();
             return rnd.Next(60, 80);
         }
-        public static int GetOpponentId(HeroesVsMonstersDbContext ctx, int draw)
+        public int GetOpponentId(int draw)
         {
             if (draw % ctx.Monsters.Count() == 0)
             {
@@ -34,14 +54,14 @@ namespace C2K2DP_HSZF_2024251.Application
                 return draw % ctx.Monsters.Count();
             }
         }
-        public static Hero FindHero(HeroesVsMonstersDbContext ctx, int heroId) => ctx.Heroes.Find(heroId);
-        public static Monster FindMonster(HeroesVsMonstersDbContext ctx, int monsterId) => ctx.Monsters.Find(monsterId);
-        public static void BattleInitialization(Hero hero, Monster monster)
+        public Hero FindHero(int heroId) => ctx.Heroes.Find(heroId);
+        public Monster FindMonster(int monsterId) => ctx.Monsters.Find(monsterId);
+        public void BattleInitialization(Hero hero, Monster monster)
         {
             hero.BattleInit();
             monster.BattleInit();
         }
-        public static bool BattleOn(Hero hero, Monster monster)
+        public bool BattleOn(Hero hero, Monster monster)
         {
             if (hero.Health > 0 && monster.Health > 0)
                 return true;
@@ -57,7 +77,8 @@ namespace C2K2DP_HSZF_2024251.Application
             else
                 return false;
         }
-        public static void Attack(IEntity attacker, IEntity attacked)
+        public bool AbilityReady(Hero hero) => hero.Manna >= hero.MaxManna;
+        public void Attack(IEntity attacker, IEntity attacked)
         {
             Random rnd = new Random();
             int Attack = rnd.Next(attacker.Strength - 30, attacker.Strength + 30);
@@ -76,7 +97,7 @@ namespace C2K2DP_HSZF_2024251.Application
                 attackerHero.Manna += Damage;
             }
         }
-        public static bool HeroWon(HeroesVsMonstersDbContext ctx, Hero hero, Monster monster)
+        public bool HeroWon(Hero hero, Monster monster)
         {
             string result;
             bool value;

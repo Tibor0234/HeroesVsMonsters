@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMonster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monster>
+    <Id>1</Id>
+    <Name>Blood Thirster</Name>
+    <Level>Vampire</Level>
+    <Strength>40</Strength>
+    <Speed>70</Speed>
+  </Monster>
+  <Monster>
+    <Id>2</Id>
+    <Name>Infernal Beast</Name>
+    <Level>Daemon</Level>
+    <Strength>85</Strength>
+    <Speed>60</Speed>
+  </Monster>
+  <Monster>
+    <Id>3</Id>
+    <Name>Stone Guardian</Name>
+    <Level>Golem</Level>
+    <Strength>90</Strength>
+    <Speed>40</Speed>
+  </Monster>
+  <Monster>
+    <Id>4</Id>
+    <Name>Flame Wyvern</Name>
+    <Level>Dragon</Level>
+    <Strength>100</Strength>
+    <Speed>80</Speed>
+  </Monster>
+  <Monster>
+    <Id>5</Id>
+    <Name>Night Stalker</Name>
+    <Level>Vampire</Level>
+    <Strength>50</Strength>
+    <Speed>75</Speed>
+  </Monster>
+  <Monster>
+    <Id>6</Id>
+    <Name>Shadow Demon</Name>
+    <Level>Daemon</Level>
+    <Strength>70</Strength>
+    <Speed>50</Speed>
+  </Monster>
+  <Monster>
+    <Id>7</Id>
+    <Name>Iron Golem</Name>
+    <Level>Golem</Level>
+    <Strength>95</Strength>
+    <Speed>30</Speed>
+  </Monster>
+  <Monster>
+    <Id>8</Id>
+    <Name>Thunder Drake</Name>
+    <Level>Dragon</Level>
+    <Strength>90</Strength>
+    <Speed>85</Speed>
+  </Monster>
+  <Monster>
+    <Id>9</Id>
+    <Name>Soul Eater</Name>
+    <Level>Vampire</Level>
+    <Strength>60</Strength>
+    <Speed>65</Speed>
+  </Monster>
+  <Monster>
+    <Id>10</Id>
+    <Name>Chaos Daemon</Name>
+    <Level>Daemon</Level>
+    <Strength>80</Strength>
+    <Speed>55</Speed>
+  </Monster>
+</ArrayOfMonster>

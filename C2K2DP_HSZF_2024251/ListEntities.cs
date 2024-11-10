@@ -7,9 +7,22 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251
 {
-    public static class ListEntities
+    public interface IListEntities
     {
-        public static void ListAll(HeroesVsMonstersDbContext ctx)
+        public void ListAll();
+        public void ListHeroes();
+        public void ListMonsters();
+    }
+    public class ListEntities : IListEntities
+    {
+        IHeroesVsMonstersDbContext ctx;
+
+        public ListEntities(IHeroesVsMonstersDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
+        public void ListAll()
         {
             Console.Write("Heroes:");
             Console.SetCursorPosition(80, Console.GetCursorPosition().Top);
@@ -46,7 +59,7 @@ namespace C2K2DP_HSZF_2024251
             }
         }
 
-        public static void ListHeroes(HeroesVsMonstersDbContext ctx)
+        public void ListHeroes()
         {
             int i = 0;
             while (i < ctx.Heroes.Count())
@@ -55,7 +68,7 @@ namespace C2K2DP_HSZF_2024251
                 i++;
             }
         }
-        public static void ListMonsters(HeroesVsMonstersDbContext ctx)
+        public void ListMonsters()
         {
             int i = 0;
             while (i < ctx.Monsters.Count())

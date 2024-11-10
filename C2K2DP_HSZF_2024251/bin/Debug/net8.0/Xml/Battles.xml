@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBattle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Battle>
+    <Id>1</Id>
+    <HeroId>1</HeroId>
+    <HeroName>Thunder Knight</HeroName>
+    <MonsterId>4</MonsterId>
+    <MonsterName>Flame Wyvern</MonsterName>
+    <Date>2024-10-21T00:00:00</Date>
+    <Result>Hero won</Result>
+  </Battle>
+  <Battle>
+    <Id>2</Id>
+    <HeroId>2</HeroId>
+    <HeroName>Shadow Assassin</HeroName>
+    <MonsterId>2</MonsterId>
+    <MonsterName>Infernal Beast</MonsterName>
+    <Date>2024-08-14T00:00:00</Date>
+    <Result>Monster won</Result>
+  </Battle>
+  <Battle>
+    <Id>3</Id>
+    <HeroId>3</HeroId>
+    <HeroName>Celestial Archer</HeroName>
+    <MonsterId>9</MonsterId>
+    <MonsterName>Soul Eater</MonsterName>
+    <Date>2024-09-07T00:00:00</Date>
+    <Result>Hero won</Result>
+  </Battle>
+  <Battle>
+    <Id>4</Id>
+    <HeroId>4</HeroId>
+    <HeroName>Earth Warden</HeroName>
+    <MonsterId>7</MonsterId>
+    <MonsterName>Iron Golem</MonsterName>
+    <Date>2024-11-03T00:00:00</Date>
+    <Result>Monster won</Result>
+  </Battle>
+  <Battle>
+    <Id>5</Id>
+    <HeroId>5</HeroId>
+    <HeroName>Mystic Sage</HeroName>
+    <MonsterId>3</MonsterId>
+    <MonsterName>Stone Guardian</MonsterName>
+    <Date>2024-10-15T00:00:00</Date>
+    <Result>Hero won</Result>
+  </Battle>
+  <Battle>
+    <Id>6</Id>
+    <HeroId>6</HeroId>
+    <HeroName>Ice Paladin</HeroName>
+    <MonsterId>1</MonsterId>
+    <MonsterName>Blood Thirster</MonsterName>
+    <Date>2024-12-05T00:00:00</Date>
+    <Result>Hero won</Result>
+  </Battle>
+  <Battle>
+    <Id>7</Id>
+    <HeroId>7</HeroId>
+    <HeroName>Nature Druid</HeroName>
+    <MonsterId>6</MonsterId>
+    <MonsterName>Shadow Demon</MonsterName>
+    <Date>2024-08-21T00:00:00</Date>
+    <Result>Monster won</Result>
+  </Battle>
+  <Battle>
+    <Id>8</Id>
+    <HeroId>8</HeroId>
+    <HeroName>Void Sorceress</HeroName>
+    <MonsterId>8</MonsterId>
+    <MonsterName>Thunder Drake</MonsterName>
+    <Date>2024-07-19T00:00:00</Date>
+    <Result>Monster won</Result>
+  </Battle>
+  <Battle>
+    <Id>9</Id>
+    <HeroId>9</HeroId>
+    <HeroName>Flame Guardian</HeroName>
+    <MonsterId>5</MonsterId>
+    <MonsterName>Night Stalker</MonsterName>
+    <Date>2024-06-09T00:00:00</Date>
+    <Result>Hero won</Result>
+  </Battle>
+  <Battle>
+    <Id>10</Id>
+    <HeroId>10</HeroId>
+    <HeroName>Battle Monk</HeroName>
+    <MonsterId>10</MonsterId>
+    <MonsterName>Chaos Daemon</MonsterName>
+    <Date>2024-09-30T00:00:00</Date>
+    <Result>Monster won</Result>
+  </Battle>
+</ArrayOfBattle>

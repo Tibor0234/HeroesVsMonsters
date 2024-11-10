@@ -9,10 +9,11 @@ using System.Net.Quic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace C2K2DP_HSZF_2024251.Model
 {
-    public class Hero : IEntity
+    public class Hero : IEntity, IHasId
     {
         public Hero() { }
 
@@ -39,15 +40,20 @@ namespace C2K2DP_HSZF_2024251.Model
         public int Speed { get; set; }
         [StringLength(500)]
         [NotMapped]
+        [XmlIgnore]
         public int Health { get; set; }
         [NotMapped]
+        [XmlIgnore]
         private int MaxHealth { get; set; }
         [NotMapped]
+        [XmlIgnore]
         public int Manna { get { return manna <= 100 ? manna : 100; } set { manna = value; } }
         [NotMapped]
+        [XmlIgnore]
         public int MaxManna { get; set; }
         public string Abilities { get; set; }
         [NotMapped]
+        [XmlIgnore]
         public ICollection<Battle> Battles { get; set; }
 
         public override string ToString()

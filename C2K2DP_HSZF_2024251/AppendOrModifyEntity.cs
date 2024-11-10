@@ -1,6 +1,7 @@
 ﻿using C2K2DP_HSZF_2024251.Application;
 using C2K2DP_HSZF_2024251.Model;
 using C2K2DP_HSZF_2024251.Persistence.MsSql;
+using Humanizer.DateTimeHumanizeStrategy;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,28 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251
 {
-    public static class AppendOrModifyEntity
+    public interface IAppendOrModifyEntity
     {
-        public static void ChooseEntity(HeroesVsMonstersDbContext ctx, bool append)
+        public void ChooseEntity(bool append);
+        public void AppendHero();
+        public void AppendMonster();
+        public void ModifyHero();
+        public void ModifyMonster();
+    }
+    public class AppendOrModifyEntity : IAppendOrModifyEntity
+    {
+        IHeroesVsMonstersDbContext ctx;
+        IAppendOrModifyEntityService appendOrModifyEntityService;
+        IListEntities listEntities;
+
+        public AppendOrModifyEntity(IHeroesVsMonstersDbContext ctx, IAppendOrModifyEntityService appendOrModifyEntityService, IListEntities listEntities)
+        {
+            this.ctx = ctx;
+            this.appendOrModifyEntityService = appendOrModifyEntityService;
+            this.listEntities = listEntities;
+        }
+
+        public void ChooseEntity(bool append)
         {
             Console.Clear();
             Console.WriteLine("Choose entity:\n\nHero [H]\t\t\tMonster [M]");
@@ -20,19 +40,19 @@ namespace C2K2DP_HSZF_2024251
             if (keyInfo.Key == ConsoleKey.H)
             {
                 if (append)
-                    AppendHero(ctx);
+                    AppendHero();
                 else
-                    ModifyHero(ctx);
+                    ModifyHero();
             }
             else if (keyInfo.Key == ConsoleKey.M)
             {
                 if (append)
-                    AppendMonster(ctx);
+                    AppendMonster();
                 else
-                    ModifyMonster(ctx);
+                    ModifyMonster();
             }
         }
-        public static void AppendHero(HeroesVsMonstersDbContext ctx)
+        public void AppendHero()
         {
             Console.Clear();
             Console.WriteLine("Name:\n");
@@ -41,13 +61,13 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("Speed (1-100):\n");
             Console.WriteLine("Abilities (Ability1, Ability2, ...):");
 
-            string[] properties = AppendOrModifyEntityService.GetHeroProperties(true);
+            string[] properties = appendOrModifyEntityService.GetHeroProperties(true);
 
             Console.SetCursorPosition(0, 13);
             if (properties[0] != "failed")
             {
                 Console.WriteLine("Hero added successfully.");
-                Hero newHero = new Hero(properties[0], properties[1], int.Parse(properties[2]), int.Parse(properties[3]), properties[4]);
+                Hero newHero = new Hero(properties[0], properties[1], int.Parse(properties[2]), int.Parse(properties[3]), appendOrModifyEntityService.GetAbilities(properties[4]));
                 ctx.Heroes.Add(newHero);
                 ctx.SaveChanges();
             }
@@ -58,7 +78,7 @@ namespace C2K2DP_HSZF_2024251
             Console.ReadKey();
         }
 
-        public static void AppendMonster(HeroesVsMonstersDbContext ctx)
+        public void AppendMonster()
         {
             Console.Clear();
             Console.WriteLine("Name:\n");
@@ -66,7 +86,7 @@ namespace C2K2DP_HSZF_2024251
             Console.WriteLine("Strength (1-100):\n");
             Console.WriteLine("Speed (1-100):\n");
 
-            string[] properties = AppendOrModifyEntityService.GetMonsterProperties(true);
+            string[] properties = appendOrModifyEntityService.GetMonsterProperties(true);
             
             Console.SetCursorPosition(0, 9);
             if (properties[0] != "failed")
@@ -83,11 +103,11 @@ namespace C2K2DP_HSZF_2024251
             Console.ReadKey();
         }
 
-        public static void ModifyHero(HeroesVsMonstersDbContext ctx)
+        public void ModifyHero()
         {
             Console.Clear();
             Console.WriteLine("Heroes:\n");
-            ListEntities.ListHeroes(ctx);
+            listEntities.ListHeroes();
             Console.Write("\nEnter your hero's number: ");
 
             int heroId = int.Parse(Console.ReadLine());
@@ -102,13 +122,13 @@ namespace C2K2DP_HSZF_2024251
             Console.SetCursorPosition(0, 13);
             Console.WriteLine("(Leave blank to keep previus setting)");
 
-            string[] properties = AppendOrModifyEntityService.GetHeroProperties(false);
+            string[] properties = appendOrModifyEntityService.GetHeroProperties(false);
 
             Console.SetCursorPosition(0, 15);
             if (properties[0] != "failed")
             {
                 Console.WriteLine("Hero modified successfully.");
-                AppendOrModifyEntityService.SetHeroProperties(hero, properties);
+                appendOrModifyEntityService.SetHeroProperties(hero, properties);
                 ctx.Heroes.Update(hero);
             }
             else
@@ -118,11 +138,11 @@ namespace C2K2DP_HSZF_2024251
             Console.ReadKey();
         }
 
-        public static void ModifyMonster(HeroesVsMonstersDbContext ctx)
+        public void ModifyMonster()
         {
             Console.Clear();
             Console.WriteLine("Monsters:\n");
-            ListEntities.ListHeroes(ctx);
+            listEntities.ListHeroes();
             Console.Write("\nEnter your monster's number: ");
 
             int monsterId = int.Parse(Console.ReadLine());
@@ -136,13 +156,13 @@ namespace C2K2DP_HSZF_2024251
             Console.SetCursorPosition(0, 9);
             Console.WriteLine("(Leave blank to keep previus setting)");
 
-            string[] properties = AppendOrModifyEntityService.GetMonsterProperties(false);
+            string[] properties = appendOrModifyEntityService.GetMonsterProperties(false);
             
             Console.SetCursorPosition(0, 11);
             if (properties[0] != "failed")
             {
                 Console.WriteLine("Monster modified successfully.");
-                AppendOrModifyEntityService.SetMonsterProperties(monster, properties);
+                appendOrModifyEntityService.SetMonsterProperties(monster, properties);
                 ctx.Monsters.Update(monster);
             }
             else

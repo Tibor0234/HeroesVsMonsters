@@ -13,9 +13,20 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class More_SimulateBattles
+    public interface IMoreSimulateBattlesService
     {
-        public static void Simulate(HeroesVsMonstersDbContext ctx, int simuationCount)
+        public void Simulate(int simuationCount);
+    }
+    public class MoreSimulateBattlesService : IMoreSimulateBattlesService
+    {
+        IHeroesVsMonstersDbContext ctx;
+
+        public MoreSimulateBattlesService(IHeroesVsMonstersDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
+        public void Simulate(int simuationCount)
         {
             Random rnd = new Random();
             for (int i = 0; i < simuationCount; i++)

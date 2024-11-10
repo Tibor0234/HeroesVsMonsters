@@ -9,9 +9,20 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class More_ListBy
+    public interface IMoreListByService
     {
-        public static IEntity[] List(HeroesVsMonstersDbContext ctx, string propertyName, bool isHero)
+        public IEntity[] List(string propertyName, bool isHero);
+    }
+    public class MoreListByService : IMoreListByService
+    {
+        IHeroesVsMonstersDbContext ctx;
+
+        public MoreListByService(IHeroesVsMonstersDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
+        public IEntity[] List(string propertyName, bool isHero)
         {
             if (isHero)
             {

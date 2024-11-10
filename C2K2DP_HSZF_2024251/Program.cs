@@ -5,6 +5,8 @@ using C2K2DP_HSZF_2024251.Application;
 using System.Reflection;
 using Azure;
 using System.Security.Cryptography;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace C2K2DP_HSZF_2024251
 {
@@ -12,12 +14,50 @@ namespace C2K2DP_HSZF_2024251
     {
         static void Main(string[] args)
         {
-            SeedDb();
-        }
-        private static void SeedDb()
-        {
-            var ctx = new HeroesVsMonstersDbContext();
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=HeroesVsMonsters;Integrated Security=True;MultipleActiveResultSets=true";
 
+            var serviceCollection = new ServiceCollection();
+
+            IServiceProvider serviceProvider = ConfigContainer(serviceCollection, connectionString);
+
+            HeroesVsMonstersDbContext ctx = serviceProvider.GetService<HeroesVsMonstersDbContext>();
+
+            SeedDb(ctx);
+
+            var mainMenu = serviceProvider.GetService<MainMenu>();
+
+            mainMenu.Menu();
+        }
+        private static IServiceProvider ConfigContainer(ServiceCollection serviceProvider, string connectionString)
+        {
+            return
+            serviceProvider
+            .AddDbContext<IHeroesVsMonstersDbContext, HeroesVsMonstersDbContext>(options => options.UseSqlServer(connectionString))
+            .AddSingleton<IMoreXmlService, MoreXmlService>()
+            .AddSingleton<IMoreSimulateBattlesService, MoreSimulateBattlesService>()
+            .AddSingleton<IMoreListByService, MoreListByService>()
+            .AddSingleton<IMoreSearchByService, MoreSearchByService>()
+            .AddSingleton<IMoreBattleStatisticsSevice, MoreBattleStatisticsSevice>()
+            .AddSingleton<IMoreXml, MoreXml>()
+            .AddSingleton<IMoreSimulateBattles, MoreSimulateBattles>()
+            .AddSingleton<IMoreListBy, MoreListBy>()
+            .AddSingleton<IMoreSearchBy, MoreSearchBy>()
+            .AddSingleton<IMoreBattleStatistics, MoreBattleStatistics>()
+            .AddSingleton<IHeroAbilities, HeroAbilities>()
+            .AddSingleton<IValidation, Validation>()
+            .AddSingleton<IAppendOrModifyEntityService, AppendOrModifyEntityService>()
+            .AddSingleton<IListEntities, ListEntities>()
+            .AddSingleton<IBattleService, BattleService>()
+            .AddSingleton<IMoreOptions, MoreOptions>()
+            .AddSingleton<IAppendOrModifyEntity, AppendOrModifyEntity>()
+            .AddSingleton<IBattleSimulation, BattleSimulation>()
+            .AddSingleton<IMoreEntityReport, MoreEntityReport>()
+            .AddSingleton<IMoreEntityReportService, MoreEntityReportService>()
+            .AddSingleton<MainMenu>()
+            .BuildServiceProvider();
+        }
+        private static void SeedDb(HeroesVsMonstersDbContext ctx)
+        {
             //Heroes
 
             List<Hero> heroes = new List<Hero>() {
@@ -33,10 +73,7 @@ namespace C2K2DP_HSZF_2024251
             new Hero("Nature Druid", "B", 65, 80, "HealingTouch, VineWhip"),
             };
 
-            foreach (var hero in heroes)
-            {
-                ctx.Heroes.Add(hero);
-            }
+            ctx.Heroes.AddRange(heroes);
 
             //Monsters
 
@@ -53,14 +90,26 @@ namespace C2K2DP_HSZF_2024251
             new Monster("Chaos Daemon", "Daemon", 80, 55),
             };
 
-            foreach (var monster in monsters)
-            {
-                ctx.Monsters.Add(monster);
-            }
+            ctx.Monsters.AddRange(monsters);
 
             ctx.SaveChanges();
 
-            MainMenu.Menu(ctx);
+            List<Battle> battles = new List<Battle>() {
+            new Battle(heroes[0], monsters[3], new DateTime(2024, 10, 21), "Hero won"),
+            new Battle(heroes[2], monsters[1], new DateTime(2024, 8, 14), "Monster won"),
+            new Battle(heroes[5], monsters[8], new DateTime(2024, 9, 7), "Hero won"),
+            new Battle(heroes[4], monsters[6], new DateTime(2024, 11, 3), "Monster won"),
+            new Battle(heroes[1], monsters[2], new DateTime(2024, 10, 15), "Hero won"),
+            new Battle(heroes[6], monsters[0], new DateTime(2024, 12, 5), "Hero won"),
+            new Battle(heroes[9], monsters[5], new DateTime(2024, 8, 21), "Monster won"),
+            new Battle(heroes[7], monsters[7], new DateTime(2024, 7, 19), "Monster won"),
+            new Battle(heroes[3], monsters[4], new DateTime(2024, 6, 9), "Hero won"),
+            new Battle(heroes[8], monsters[9], new DateTime(2024, 9, 30), "Monster won")
+            };
+
+            ctx.Battles.AddRange(battles);
+
+            ctx.SaveChanges();
         }
     }
 }

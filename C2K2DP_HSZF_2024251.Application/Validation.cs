@@ -8,19 +8,32 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class Validation
+    public interface IValidation
     {
-        public static bool ValidateName(string name, bool append)
+        public bool ValidateName(string name, bool append);
+        public bool ValidateCategory(string category, bool append);
+        public bool ValidateLevel(string level, bool append);
+        public bool ValidateStrengthAndSpeed(string strengthOrSpeed, bool append);
+        public bool ValidateAbilities(string abilities, bool append);
+    }
+    public class Validation : IValidation
+    {
+        IHeroAbilities heroAbilities;
+        public Validation(IHeroAbilities heroAbilities)
+        {
+            this.heroAbilities = heroAbilities;
+        }
+        public bool ValidateName(string name, bool append)
         {
             if (name.IsNullOrEmpty() && !append)
                 return true;
 
-            if (!name.IsNullOrEmpty() && name.Length < 50)
+            if (!name.IsNullOrEmpty())
                 return true;
             else
                 return false;
         }
-        public static bool ValidateCategory(string category, bool append)
+        public bool ValidateCategory(string category, bool append)
         {
             if (category.IsNullOrEmpty() && !append)
                 return true;
@@ -30,7 +43,7 @@ namespace C2K2DP_HSZF_2024251.Application
             else
                 return false;
         }
-        public static bool ValidateLevel(string level, bool append)
+        public bool ValidateLevel(string level, bool append)
         {
             if (level.IsNullOrEmpty() && !append)
                 return true;
@@ -40,7 +53,7 @@ namespace C2K2DP_HSZF_2024251.Application
             else
                 return false;
         }
-        public static bool ValidateStrengthAndSpeed(string strengthOrSpeed, bool append)
+        public bool ValidateStrengthAndSpeed(string strengthOrSpeed, bool append)
         {
             if (strengthOrSpeed.IsNullOrEmpty() && !append)
                 return true;
@@ -54,7 +67,7 @@ namespace C2K2DP_HSZF_2024251.Application
                 return false;
             }
         }
-        public static bool ValidateAbilities(string abilities, bool append)
+        public bool ValidateAbilities(string abilities, bool append)
         {
             if (abilities.IsNullOrEmpty() && !append)
                 return true;
@@ -62,7 +75,7 @@ namespace C2K2DP_HSZF_2024251.Application
             string[] abilitiesSplitted = abilities.Split(", ");
             for (int i = 0; i < abilitiesSplitted.Length; i++)
             {
-                if (!HeroAbilities.ListOfAbilities.Select(a => a.ToLower()).Contains(abilitiesSplitted[i].ToLower()))
+                if (!heroAbilities.ListOfAbilities.Select(a => a.ToLower()).Contains(abilitiesSplitted[i].ToLower()))
                 {
                     return false;
                 }

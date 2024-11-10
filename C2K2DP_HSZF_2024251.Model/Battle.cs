@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace C2K2DP_HSZF_2024251.Model
 {
-    public class Battle
+    public class Battle : IHasId
     {
         public Battle() { }
         public Battle(Hero hero, Monster monster, DateTime date, string result)
@@ -25,11 +26,13 @@ namespace C2K2DP_HSZF_2024251.Model
         [Key]
         public int Id { get; set; }
         [NotMapped]
+        [XmlIgnore]
         [ForeignKey("HeroId")]
         public Hero Hero { get; set; }
         public int HeroId { get; set; }
         public string HeroName { get; set; }
         [NotMapped]
+        [XmlIgnore]
         [ForeignKey("MonsterId")]
         public Monster Monster { get; set; }
         public int MonsterId { get; set; }
@@ -39,7 +42,7 @@ namespace C2K2DP_HSZF_2024251.Model
 
         public override string ToString()
         {
-            return $"{Id,2}. {Date.ToString(),-23} {Hero.Name,-18} vs  {Monster.Name,-18} :  {Result}";
+            return $"{Id,2}. {DateOnly.FromDateTime(Date).ToString(),-13} {Hero.Name,-18} vs  {Monster.Name,-18} :  {Result}";
         }
     }
 }

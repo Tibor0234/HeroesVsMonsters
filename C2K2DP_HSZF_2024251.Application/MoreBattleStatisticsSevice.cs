@@ -8,9 +8,21 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Application
 {
-    public static class More_BattleStatistics
+    public interface IMoreBattleStatisticsSevice
     {
-        public static float HeroesWinRate(HeroesVsMonstersDbContext ctx)
+        public float HeroesWinRate();
+        public Monster[] DefeatedMonsters();
+    }
+    public class MoreBattleStatisticsSevice : IMoreBattleStatisticsSevice
+    {
+        IHeroesVsMonstersDbContext ctx;
+
+        public MoreBattleStatisticsSevice(IHeroesVsMonstersDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
+        public float HeroesWinRate()
         {
             if (ctx.Battles.Count() == 0)
                 return 0;
@@ -20,7 +32,7 @@ namespace C2K2DP_HSZF_2024251.Application
             return float.Round(rate,2);
         }
 
-        public static Monster[] DefeatedMonsters(HeroesVsMonstersDbContext ctx)
+        public Monster[] DefeatedMonsters()
         {
             var defeatedMonsters = ctx.Monsters.Where(m => m.Battles.Where(b => b.Result == "Hero won").Count() > 0);
             return defeatedMonsters.ToArray();

@@ -11,41 +11,60 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251
 {
-    public static class MainMenu
+    public class MainMenu
     {
-        public static void Menu(HeroesVsMonstersDbContext ctx)
-        {
-            Console.Clear();
-            ListEntities.ListAll(ctx);
+        IHeroesVsMonstersDbContext ctx;
+        IListEntities listEntities;
+        IBattleSimulation battleSimulation;
+        IAppendOrModifyEntity appendOrModifyEntity;
+        IMoreOptions moreOptions;
 
-            Console.Write("\nEnter battle [Q]");
-            Console.SetCursorPosition(35, Console.GetCursorPosition().Top);
-            Console.Write("Add new entity [W]");
-            Console.SetCursorPosition(70, Console.GetCursorPosition().Top);
-            Console.Write("Modify entity [E]");
-            Console.SetCursorPosition(105, Console.GetCursorPosition().Top);
-            Console.WriteLine("More options [R]");
-            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-            if (keyInfo.Key == ConsoleKey.Q)
+        public MainMenu(IHeroesVsMonstersDbContext ctx, IListEntities listEntities, IBattleSimulation battleSimulation, IAppendOrModifyEntity appendOrModifyEntity, IMoreOptions moreOptions)
+            
+        {
+            this.ctx = ctx;
+            this.listEntities = listEntities;
+            this.battleSimulation = battleSimulation;
+            this.appendOrModifyEntity = appendOrModifyEntity;
+            this.moreOptions = moreOptions;
+        }
+
+        public void Menu()
+        {
+            ConsoleKeyInfo keyInfo;
+            do
             {
-                BattleSimulation.PrepareBattle(ctx);
-                Menu(ctx);
-            }
-            if (keyInfo.Key == ConsoleKey.W)
-            {
-                AppendOrModifyEntity.ChooseEntity(ctx, true);
-                Menu(ctx);
-            }
-            if (keyInfo.Key == ConsoleKey.E)
-            {
-                AppendOrModifyEntity.ChooseEntity(ctx, false);
-                Menu(ctx);
-            }
-            if (keyInfo.Key == ConsoleKey.R)
-            {
-                MoreOptions.ListOptions(ctx);
-                Menu(ctx);
-            }
+                Console.Clear();
+                listEntities.ListAll();
+
+                Console.Write("\nEnter battle [Q]");
+                Console.SetCursorPosition(25, Console.GetCursorPosition().Top);
+                Console.Write("Add new entity [W]");
+                Console.SetCursorPosition(50, Console.GetCursorPosition().Top);
+                Console.Write("Modify entity [E]");
+                Console.SetCursorPosition(75, Console.GetCursorPosition().Top);
+                Console.Write("More options [R]");
+                Console.SetCursorPosition(100, Console.GetCursorPosition().Top);
+                Console.WriteLine("End program [Esc]");
+
+                keyInfo = Console.ReadKey(intercept: true);
+                if (keyInfo.Key == ConsoleKey.Q)
+                {
+                    battleSimulation.PrepareBattle();
+                }
+                if (keyInfo.Key == ConsoleKey.W)
+                {
+                    appendOrModifyEntity.ChooseEntity(true);
+                }
+                if (keyInfo.Key == ConsoleKey.E)
+                {
+                    appendOrModifyEntity.ChooseEntity(false);
+                }
+                if (keyInfo.Key == ConsoleKey.R)
+                {
+                    moreOptions.ListOptions();
+                }
+            } while (keyInfo.Key != ConsoleKey.Escape);
         }
     }
 }

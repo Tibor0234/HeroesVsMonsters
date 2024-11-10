@@ -9,22 +9,23 @@ using System.Threading.Tasks;
 
 namespace C2K2DP_HSZF_2024251.Persistence.MsSql
 {
-    public class HeroesVsMonstersDbContext : DbContext
+    public interface IHeroesVsMonstersDbContext
+    {
+        public DbSet<Hero> Heroes { get; set; }
+        public DbSet<Monster> Monsters { get; set; }
+        public DbSet<Battle> Battles { get; set; }
+        public int SaveChanges();
+    }
+    public class HeroesVsMonstersDbContext : DbContext , IHeroesVsMonstersDbContext
     {
         public DbSet<Hero> Heroes { get; set; }
         public DbSet<Monster> Monsters { get; set; }
         public DbSet<Battle> Battles { get; set; }
 
-        public HeroesVsMonstersDbContext() 
+        public HeroesVsMonstersDbContext(DbContextOptions<HeroesVsMonstersDbContext> options) : base(options)
         {
-            this.Database.EnsureDeleted();
-            this.Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=HeroesVsMonsters;Integrated Security=True;MultipleActiveResultSets=true";
-            optionsBuilder.UseSqlServer(connectionString);
-            base.OnConfiguring(optionsBuilder);
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
