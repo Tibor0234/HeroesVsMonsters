@@ -4,7 +4,7 @@ Console application for managing Heroes, Monsters and recording Battles. Impleme
 
 ## Overview
 - Domain models: `Hero`, `Monster`, `Battle`.
-- CRUD-style console flows for creating and modifying entities.
+- Console-based flows for creating, listing and modifying entities.
 - Persistence via an EF-style abstraction `IHeroesVsMonstersDbContext` (concrete implementation under `Persistence.MsSql`).
 - Input validation and parsing handled by `IAppendOrModifyEntityService` and `IValidation`.
 - Small, self-contained codebase designed for clarity and easy extension.
@@ -21,11 +21,28 @@ Console application for managing Heroes, Monsters and recording Battles. Impleme
 - EF-style DbContext abstraction (concrete SQL persistence available)
 - NuGet dependencies (e.g., Humanizer)
 
+## Project structure
+```text
+├── Console/
+│   └── Console interaction and input handling
+│
+├── Application/
+│   └── Services and business logic
+│
+├── Model/
+│   ├── Hero.cs
+│   ├── Monster.cs
+│   └── Battle.cs
+│
+└── Persistence/
+    └── Database context and persistence implementations
+```
+
 ## Quickstart (Visual Studio 2022)
 1. __Open a project or solution__ in Visual Studio 2022.
 2. Restore NuGet packages: right-click solution → __Restore NuGet Packages__.
 3. Set the startup project: right-click the console project → __Set as Startup Project__.
-4. Configure the database connection for the concrete `IHeroesVsMonstersDbContext`.
+4. Configure the database connection string in Program.cs.
 5. Run: __Debug > Start Debugging__ or press Ctrl+F5.
 
 Quickstart (dotnet CLI)
@@ -48,7 +65,8 @@ If you prefer to run without a SQL backend, implement an in-memory/mock `IHeroes
 - `Application/` — `IAppendOrModifyEntityService`, `IValidation`, `IListEntities`, `IHeroAbilities`.
 
 ## Testing & extensions
+- No automated tests are currently included.
 - Interfaces make unit testing straightforward (mock `IHeroesVsMonstersDbContext` and services).
-- Suggested improvements: unit tests for validation, making abilities have an affect.
+- Suggested improvements: add unit tests for validation and implement gameplay effects for Hero abilities.
 
 Notes: developed as a university semester project — scope and design reflect that context.
